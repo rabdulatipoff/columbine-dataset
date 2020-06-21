@@ -5,11 +5,19 @@ import sys
 
 
 if __name__ == '__main__':
-    ds_path = str(sys.argv[1])
+    try:
+        ds_path = str(sys.argv[1])
+    except IndexError:
+        raise Exception("You have to provide a valid dataset directory path as an argument")
+
     files = [f for f in listdir(ds_path) if isfile(join(ds_path, f))]
     jpgs = [f for f in files if f.split('.')[1] == 'jpg']
 
-    to_val = float(sys.argv[2])
+    try:
+        to_val = float(sys.argv[2])
+    except IndexError:
+        raise Exception("You have to provide a valid float number for validation data percentage")
+
     val = sample(jpgs, k=int(len(jpgs) * to_val))
     train = [f for f in jpgs if f not in val]
 

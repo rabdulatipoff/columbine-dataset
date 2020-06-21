@@ -5,19 +5,14 @@ import sys
 
 
 if __name__ == '__main__':
-    ds_path = str(sys.argv[1])
+    try:
+        ds_path = str(sys.argv[1])
+    except IndexError:
+        raise Exception("You have to provide a valid dataset directory path as an argument")
+
     files = [f for f in listdir(ds_path) if isfile(join(ds_path, f))]
-    jpgs = [f for f in files if f.split('.')[1] == 'jpg']
     txts = [f for f in files if f.split('.')[1] == 'txt']
 
-    """
-    print(len(jpgs), len(txts))
-    for f in jpgs:
-        txtf = join(ds_path, f.split('.')[0] + '.txt')
-        jpgf = join(ds_path, f)
-        if not isfile(txtf):
-            print(jpgf)
-    """
     for f in txts:
         try:
             files.remove(f)
