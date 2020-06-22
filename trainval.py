@@ -1,4 +1,4 @@
-from os import listdir
+from os import listdir, sep
 from os.path import isfile, join
 from random import sample
 import sys
@@ -22,7 +22,7 @@ if __name__ == '__main__':
     train = [f for f in jpgs if f not in val]
 
     with open('train.txt', 'w') as trainf:
-        for f in train: trainf.write('./dataset/train_items/' + f + '\n')
+        for f in train: trainf.write('./dataset/' + ds_path + sep + f + '\n')
 
     with open('val.txt', 'w') as valf:
-        for f in val: valf.write('./dataset/train_items/' + f + '\n')
+        for f in val: valf.write('./dataset/' + ds_path + sep + f + '\n')
